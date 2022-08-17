@@ -8,10 +8,9 @@
  */
 
 const int buttonPin = 8;
+int       buttonState = 0;
 const int leds[] = {17,18,19,20,21,22,23,16,0,1,2,3,4,5,6,7};
-
-const int timer = 5000;
-int buttonState = 0;
+const int timer = 6000;
 
 void setup() {
   for (int i=0; i<16; i++) {    // Set LEDs as outputs.
@@ -27,38 +26,37 @@ void setup() {
     delay(100);
     digitalWrite(leds[i], LOW);
   }
-  for (int i=0; i<16; i++) {    // Set all LEDs high
-    digitalWrite(leds[i], HIGH);
-  }
-
   pinMode(buttonPin, INPUT_PULLUP);
 }
 
 void loop() {
   buttonState = digitalRead(buttonPin);
 
-  // check if the pushbutton is pressed. If it is, the buttonState is HIGH:
+  // check if the pushbutton is pressed.
   if (buttonState == LOW) {
-    for (int i=0; i<16; i++) {    // Set all LEDs low
+    for (int i=0; i<16; i++) {    // Start Toothbrush counting.
       digitalWrite(leds[i], LOW);
     }
-    for (int i=0; i<16; i++) {
+    for (int i=0; i<16; i++) {    // Turn on LEDs one at a time.
       delay(timer);
       digitalWrite(leds[i], HIGH);
     }
-    for (int i=0; i<16; i++) {    // Set all LEDs low
-      for (int i=0; i<16; i++) {    // Set all LEDs low
-        digitalWrite(leds[i], LOW);
-        delay(10);
+    for (int i=0; i<16; i++) {    // End of timer, flash LEDS
+      for (int i=0; i<16; i++) {    // Set all LEDs high.
+        digitalWrite(leds[i], HIGH);
+        delay(5);
       }
       delay(500);
-      for (int i=0; i<20; i++) {    // Set all LEDs low
-        digitalWrite(leds[i], HIGH);
-        delay(10);
+      for (int i=0; i<16; i++) {    // Set all LEDs low
+        digitalWrite(leds[i], LOW);
+        delay(5);
       }
       delay(500);
     }
   } else {
-    // do nothing.
+    digitalWrite(leds[0], HIGH);
+    delay(1);
+    digitalWrite(leds[0], LOW);
+    delay(10);
   }
 }
