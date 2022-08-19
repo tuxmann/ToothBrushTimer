@@ -32,8 +32,8 @@ void setup() {
 
 void loop() {
   for (int i=0; i<16; i++) {
-    buttonState = digitalRead(buttonPin);
     for (int j=0; i<ztimer; j++) {
+      buttonState = digitalRead(buttonPin);
       // check if the pushbutton is pressed.
       if (buttonState == LOW) {
         runtimer();
