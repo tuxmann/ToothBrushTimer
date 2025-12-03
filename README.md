@@ -1,8 +1,11 @@
 # ToothBrushTimer
 A simple two minute tooth brush timer for the kids.
 
+
 No Repeats: Added a do...while loop that forces the randomizer to pick a new number if it matches the previous one.
+
 Time-Based Animations: Instead of counting loops (e.g., "do this 5 times"), the animations now accept a duration (set to 15 seconds). They will keep repeating their specific pattern until that time is up.
+
 Random Seeding: Added randomSeed(micros()); right when the button is pressed. This ensures the animation is truly random every time you brush.
 
 The Animations:
